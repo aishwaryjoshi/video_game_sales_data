@@ -1,0 +1,25 @@
+glue:
+  database: indigg_assignment
+  table_names:
+  - steam_200k_csv
+  - vgsales_csv
+  role: aws_glue_role
+cleaning:
+  handle_nulls: use_zero
+tables:
+  - name: steam
+    autodetect: False
+    columns:
+    - user_id
+    - game_name
+    - operation
+    - value
+    - extra
+    types:
+    - int
+    - str
+    - str
+    - double
+    - int
+  - name: vgsales
+    autodetect: True

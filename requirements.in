@@ -1,0 +1,8 @@
+pyspark==3.4.1
+pip-tools
+kaggle
+pyyaml
+pydantic
+awscli
+hadoop-aws
+matplotlib
