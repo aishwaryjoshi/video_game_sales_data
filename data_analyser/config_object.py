@@ -41,6 +41,13 @@ class Table(BaseModel):
 
 
 class Config(BaseModel):
+    """
+    glue: configuration for interacting with AWS Glue.
+    cleaning: configuration for data cleaning operations.
+    tables: list of table configurations. Each element in the list
+    corresponds to a specific table and is represented by an instance of the Table class.
+    """
+
     glue: Glue
     cleaning: Cleaning
     tables: List[Table]
