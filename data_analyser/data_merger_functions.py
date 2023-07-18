@@ -6,6 +6,11 @@ from data_analyser.dataframe_models import TableData
 
 
 def run_merge_operation(tables: List[TableData]) -> DataFrame:
+    """
+    Function merges two DataFrames, performs required transformations
+    and column operations, and saves the merged DataFrame
+    to a CSV file in S3 bucket. It returns the merged DataFrame.
+    """
     vgsale_table = [table for table in tables if table.config.name == "vgsales"][0]
     steam_table = [table for table in tables if table.config.name == "steam"][0]
     steam_agg_table_df = steam_table.df.groupBy("game_name").agg(

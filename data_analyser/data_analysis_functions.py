@@ -8,6 +8,12 @@ from data_analyser.dataframe_models import TableData
 
 
 def _sales_per_platform(df: DataFrame) -> DataFrame:
+    """
+    Function performs aggregation on the input DataFrame
+    to calculate the total sales per platform. Then plot
+    the results using Matplotlib and saves the plot
+    as a PDF file in the "plotted_graphs" directory.
+    """
     # Aggregate the sales columns using the sum function
     sales_aggregated = df.groupBy("platform").agg(
         F.sum("global_sales").alias("total_global_sales"),
@@ -26,4 +32,7 @@ def _sales_per_platform(df: DataFrame) -> DataFrame:
 
 
 def perform_analysis(df: DataFrame) -> DataFrame:
+    """
+    Wrapper/helper function to invoke above function, which performs sales analysis
+    """
     _sales_per_platform(df)

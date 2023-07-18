@@ -7,12 +7,22 @@ from data_analyser.data_analysis_functions import perform_analysis
 
 
 def get_config() -> Config:
+    """
+    function reads configs.yaml file,
+    loads its contents, and returns the object
+    containing the configuration information from the file.
+    """
     with open("configs.yaml", "r") as file:
         config = Config(**yaml.safe_load(file))
         return config
 
 
 def get_spark_session(app_name: str) -> SparkSession:
+    """
+    set up SparkSession with required configurations with access and secret keys to S3
+    and returns the created SparkSession object.
+    It allows you to interact with Apache Spark using the configured session.
+    """
     spark_session = (
         SparkSession.builder.config(
             "spark.jars.packages", "org.apache.spark:spark-hadoop-cloud_2.12:3.4.1"
