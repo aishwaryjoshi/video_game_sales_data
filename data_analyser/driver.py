@@ -27,9 +27,9 @@ def get_spark_session(app_name: str) -> SparkSession:
         SparkSession.builder.config(
             "spark.jars.packages", "org.apache.spark:spark-hadoop-cloud_2.12:3.4.1"
         )
-        .config("spark.hadoop.fs.s3a.access.key", "AKIA2NVFJCO3WEJLF5BI")
+        .config("spark.hadoop.fs.s3a.access.key", "AKIA2NVFJCO3UFOUJ5JN")
         .config(
-            "spark.hadoop.fs.s3a.secret.key", "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"
+            "spark.hadoop.fs.s3a.secret.key", "3lwNvQaGqxLvJdli3d4QkEkgEEQTjyjaUzm9Fyfy"
         )
         .appName(app_name)
         .getOrCreate()
@@ -42,11 +42,6 @@ if __name__ == "__main__":
     spark_session = get_spark_session("indigg_assignment")
     tables = []
     for table_data in read_from_glue_table(spark_session, config):
-        # table_data.df = table_data.df.coalesce(1)
-        # table_data.df.write.mode("overwrite").csv(
-        #     f"s3a://aishwary-test-bucket/indigg-assignment-bucket/output/cleaned_df/{table_data.config.name}/",
-        #     header=True,
-        # )
         table_data.df = clean_data(table_data.df, config.cleaning)
         tables.append(table_data)
     merged_df = run_merge_operation(tables)
